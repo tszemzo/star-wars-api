@@ -1,19 +1,11 @@
 const express = require('express');
-const port = 5000;
+const { server } = require('./config/config.json');
+
 const app = express();
+const routes = require('./routes');
 
-app.get("/", (req, res) => {
-  res.send("hello world");
-});
+app.use('/', routes);
 
-app.get("/people", (req, res) => {
-  res.send("hello people");
-});
-
-app.get("/planets", (req, res) => {
-  res.send("hello planets");
-});
-
-app.listen(port, () => {
-  console.log("Express server listning on port " + port);
+app.listen(server.port, () => {
+  console.log("Express server listning on port " + server.port);
 });

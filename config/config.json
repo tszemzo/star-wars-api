@@ -1,0 +1,6 @@
+{
+  "server": {
+    "port": 5000
+  },
+  "apiLink": "https://swapi.dev/api"
+}

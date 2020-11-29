@@ -4,13 +4,13 @@
 const axios = require('axios');
 const CustomError = require('../errors/customError');
 const errors = require('../errors/exporter/peopleErrors');
+const { sortName, sortHeight, sortMass } = require('../utils/peopleSort');
 
 class PeopleService {
   async getPeople({
       sortBy, 
       peopleLink
     }) {
-    console.log(sortBy);
     const page = await this.getPeoplePage(peopleLink);
     const people = page.results;
     let { next } = page;
@@ -18,6 +18,12 @@ class PeopleService {
       const newPage = await this.getPeoplePage(next);
       next = newPage.next;
       people.push(...newPage.results);
+    }
+    if(sortBy) {
+      return this.sortPeople({
+        people, 
+        sortBy
+      });
     }
     return people;
   }
@@ -28,6 +34,21 @@ class PeopleService {
       throw new CustomError(errors.ErrorGettingPlanets());
     }
     return response.data;
+  }
+
+  sortPeople({
+    people,
+    sortBy
+  }) {
+    const sortByRegex = RegExp('^(name|height|mass)$');
+    if(!sortByRegex.test(sortBy)) return;
+    if(sortBy === "name") {
+      return people.sort(sortName);
+    } else if (sortBy === "mass"){
+      return people.sort(sortMass);
+    } else {
+      return people.sort(sortHeight);
+    }
   }
 }
 module.exports = new PeopleService();

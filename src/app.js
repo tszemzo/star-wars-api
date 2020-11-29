@@ -9,6 +9,10 @@ app.use(bp.urlencoded({ extended: false }));
 app.use(bp.json());
 app.use('/', routes);
 
-app.listen(port, () => {
-  console.log(`Express server listning on port ${port}`);
-});
+async function startServer() {    
+  app.listen(port, () => {
+    console.log(`Express server listening on port ${port}`);
+  });
+}
+
+startServer();

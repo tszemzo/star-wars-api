@@ -1,6 +1,3 @@
-/* eslint-disable class-methods-use-this */
-/* eslint-disable no-plusplus */
-/* eslint-disable no-await-in-loop */
 const axios = require('axios');
 const CustomError = require('../errors/customError');
 const errors = require('../errors/exporter/planetErrors');

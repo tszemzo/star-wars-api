@@ -4,7 +4,7 @@ const peopleService = require('../services/people');
 const { apiURL } = require('../config/index');
 
 routes.get('/', (req, res) => {
-  res.send('hello world');
+  res.status(200).send('Hello world');
 });
 
 routes.get('/people', async (req, res) => {

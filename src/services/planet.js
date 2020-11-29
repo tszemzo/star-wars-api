@@ -26,7 +26,9 @@ class PlanetService {
 
   async getPlanetsPage(url) {
     const response = await axios.get(url);
-    if (!response || !response.data) throw new CustomError(errors.ErrorGettingPlanets());
+    if (!response || !response.data) {
+      throw new CustomError(errors.ErrorGettingPlanets());
+    }
     return response.data;
   }
 

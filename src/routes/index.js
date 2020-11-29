@@ -1,6 +1,6 @@
 const routes = require('express').Router();
-const axios = require('axios');
 const planetService = require('../services/planet');
+const peopleService = require('../services/people');
 const { apiURL } = require('../config/index');
 
 routes.get('/', (req, res) => {
@@ -8,9 +8,13 @@ routes.get('/', (req, res) => {
 });
 
 routes.get('/people', async (req, res) => {
-  const response = await axios.get(`${apiURL}/people/`);
-  console.log(response.data.results);
-  res.send('hello people');
+  const sortBy = req.query.sortBy;
+  const peopleLink = `${apiURL}/people/`;
+  const response = await peopleService.getPeople({
+    peopleLink, 
+    sortBy
+  });
+  res.status(200).send(response);
 });
 
 routes.get('/planets', async (req, res) => {

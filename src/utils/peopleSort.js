@@ -1,5 +1,8 @@
 module.exports = {
   sortMass(a, b) {
+    // If unknown we consider it bigger (Go to the end)
+    if(a.mass === 'unknown') return 1;
+    if(b.mass === 'unknown') return -1;
     return a.mass - b.mass;
   },
   sortHeight(a, b) {
@@ -11,4 +14,3 @@ module.exports = {
     return 0;
   }
 };
-    

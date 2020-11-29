@@ -15,7 +15,7 @@ class PlanetService {
 
     for (let i = 0; i < planets.length; i++) {
       const planet = planets[i];
-      const residents = await this.getResidents(planet);
+      const residents = await this.getResidents(planets[i]);
       planet.residents = residents;
     }
     return planets;

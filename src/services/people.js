@@ -1,7 +1,7 @@
 const axios = require('axios');
 const CustomError = require('../errors/customError');
 const errors = require('../errors/exporter/peopleErrors');
-const { sortName, sortHeight, sortMass } = require('../utils/peopleSort');
+const { sortByEnum, sortRegex } = require('../utils/constants');
 
 class PeopleService {
   async getPeople({
@@ -28,7 +28,7 @@ class PeopleService {
   async getPeoplePage(url) {
     const response = await axios.get(url);
     if (!response || !response.data) {
-      throw new CustomError(errors.ErrorGettingPlanets());
+      throw new CustomError(errors.ErrorGettingPeople());
     }
     return response.data;
   }
@@ -37,15 +37,9 @@ class PeopleService {
     people,
     sortBy
   }) {
-    const sortByRegex = RegExp('^(name|height|mass)$');
+    const sortByRegex = RegExp(sortRegex);
     if(!sortByRegex.test(sortBy)) return;
-    if(sortBy === "name") {
-      return people.sort(sortName);
-    } else if (sortBy === "mass"){
-      return people.sort(sortMass);
-    } else {
-      return people.sort(sortHeight);
-    }
+    return people.sort(sortByEnum[sortBy]);
   }
 }
 module.exports = new PeopleService();

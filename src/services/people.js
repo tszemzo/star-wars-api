@@ -38,7 +38,7 @@ class PeopleService {
     sortBy
   }) {
     const sortByRegex = RegExp(sortRegex);
-    if(!sortByRegex.test(sortBy)) return;
+    if(!sortByRegex.test(sortBy)) return people;
     return people.sort(sortByEnum[sortBy]);
   }
 }

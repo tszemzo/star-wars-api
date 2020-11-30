@@ -12,13 +12,8 @@ class PlanetService {
       next = newPage.next;
       planets.push(...newPage.results);
     }
-
-    for (let i = 0; i < planets.length; i++) {
-      const planet = planets[i];
-      const residents = await this.getResidents(planets[i]);
-      planet.residents = residents;
-    }
-    return planets;
+    const formattedPlanets = await this.formatPlanets(planets);
+    return formattedPlanets;
   }
 
   async getPlanetsPage(url) {
@@ -29,17 +24,25 @@ class PlanetService {
     return response.data;
   }
 
+  async formatPlanets(planets) {
+    return await Promise.all(
+      planets.map(async planet => {
+        const residents = await this.getResidents(planet);
+        planet.residents = residents;
+        return planet;
+      })
+    );
+  }
+
   async getResidents(planet) {
     const { residents } = planet;
-    const names = [];
-    for (let i = 0; i < residents.length; i++) {
-      const response = await axios.get(residents[i]);
-      if (!response || !response.data) {
-        throw new CustomError(errors.ErrorGettingResidentNames());
-      }
-      names.push(response.data.name);
-    }
-    return names;
+    return await Promise.all(
+      residents.map(async r => {
+        const resident = await axios.get(r);
+        if(resident && resident.data)
+          return resident.data.name;
+      })
+    );
   }
 }
 module.exports = new PlanetService();

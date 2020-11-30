@@ -9,17 +9,14 @@ routes.get('/', (req, res) => {
 
 routes.get('/people', async (req, res) => {
   const sortBy = req.query.sortBy;
-  const peopleLink = `${apiURL}/people/`;
   const response = await peopleService.getPeople({
-    peopleLink, 
     sortBy
   });
   res.status(200).send(response);
 });
 
 routes.get('/planets', async (req, res) => {
-  const planetsLink = `${apiURL}/planets/`;
-  const response = await planetService.getPlanets(planetsLink);
+  const response = await planetService.getPlanets();
   res.status(200).send(response);
 });
 

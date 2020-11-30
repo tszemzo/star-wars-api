@@ -1,10 +1,11 @@
 const axios = require('axios');
 const CustomError = require('../errors/customError');
 const errors = require('../errors/exporter/planetErrors');
+const { planetsLink } = require('../utils/constants');
 
 class PlanetService {
-  async getPlanets(link) {
-    const page = await this.getPlanetsPage(link);
+  async getPlanets() {
+    const page = await this.getPlanetsPage(planetsLink);
     const planets = page.results;
     let { next } = page;
     while (next) {

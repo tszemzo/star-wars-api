@@ -12,7 +12,7 @@ app.use('/', routes);
 async function startServer() {
   const PORT = port || 3000;
   app.listen(PORT, () => {
-    console.log(`Express server listening on port ${port}`);
+    console.log(`Express server listening on port ${PORT}`);
   });
 }
 

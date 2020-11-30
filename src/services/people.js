@@ -1,12 +1,11 @@
 const axios = require('axios');
 const CustomError = require('../errors/customError');
 const errors = require('../errors/exporter/peopleErrors');
-const { sortByEnum, sortRegex } = require('../utils/constants');
+const { sortByEnum, sortRegex, peopleLink } = require('../utils/constants');
 
 class PeopleService {
   async getPeople({
-      sortBy, 
-      peopleLink
+      sortBy
     }) {
     const page = await this.getPeoplePage(peopleLink);
     const people = page.results;

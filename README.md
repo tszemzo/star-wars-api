@@ -1,6 +1,6 @@
 # Star Wars API
 
-A NodeJS API for swapi.co - the Star Wars API developed with Express.
+A NodeJS API for swapi.co - the Star Wars API.
 
 Improvements to do:
 - Improve the architecture of the server

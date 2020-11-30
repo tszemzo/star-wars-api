@@ -23,7 +23,7 @@ Return all planets.
 In the root of the project, you can run the server in dev mode with the following commands:
 
 ~~~bash
-cp .env.example env
+cp .env.example .env
 npm install
 npm start
 ~~~

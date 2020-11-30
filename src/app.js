@@ -9,8 +9,9 @@ app.use(bp.urlencoded({ extended: false }));
 app.use(bp.json());
 app.use('/', routes);
 
-async function startServer() {    
-  app.listen(port, () => {
+async function startServer() {
+  const PORT = port || 3000;
+  app.listen(PORT, () => {
     console.log(`Express server listening on port ${port}`);
   });
 }

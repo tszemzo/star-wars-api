@@ -20,8 +20,11 @@ Return all planets.
 
 ## Server run
 
-In the root of the project, you can run the server in dev mode with the following commands:
+### Pre-requisites:
 
+Make sure you have installed Node.js (version >= 12.16.x) and the npm package manager.
+
+In the root of the project, you can run the server in dev mode with the following commands:
 ~~~bash
 cp .env.example .env
 npm install

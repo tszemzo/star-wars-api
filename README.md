@@ -20,9 +20,10 @@ Return all planets.
 
 ## Server run
 
-In the project root directory, you can run the server in dev mode:
+In the root of the project, you can run the server in dev mode with the following commands:
 
 ~~~bash
-	npm install
-	npm start
+cp .env.example env
+npm install
+npm start
 ~~~
